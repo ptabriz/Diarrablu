@@ -12,6 +12,8 @@ const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const paths = require('./paths');
 const getClientEnvironment = require('./env');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -51,6 +53,21 @@ const extractTextPluginOptions = shouldUseRelativeAssetPaths
 // The development configuration is different and lives in a separate file.
 module.exports = {
   mode: 'production',
+  optimization: {
+  minimizer: [
+    // we specify a custom UglifyJsPlugin here to get source maps in production
+    new UglifyJsPlugin({
+      cache: true,
+      parallel: true,
+      uglifyOptions: {
+        compress: false,
+        ecma: 6,
+        mangle: true
+      },
+      sourceMap: true
+    })
+  ]
+},
   // Don't attempt to continue if there are any errors.
   bail: true,
   // We generate sourcemaps in production. This is slow but gives good results.

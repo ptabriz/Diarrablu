@@ -11,7 +11,7 @@ const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
-
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
 const publicPath = '/';
@@ -26,6 +26,21 @@ const env = getClientEnvironment(publicUrl);
 // It is focused on developer experience and fast rebuilds.
 // The production configuration is different and lives in a separate file.
 module.exports = {
+  optimization: {
+   minimizer: [
+     // we specify a custom UglifyJsPlugin here to get source maps in production
+     new UglifyJsPlugin({
+       cache: true,
+       parallel: true,
+       uglifyOptions: {
+         compress: false,
+         ecma: 6,
+         mangle: true
+       },
+       sourceMap: true
+     })
+   ]
+ },
   mode: 'development',
   // You may want 'eval' instead if you prefer to see the compiled output in DevTools.
   // See the discussion in https://github.com/facebookincubator/create-react-app/issues/343.
