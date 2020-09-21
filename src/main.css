@@ -1,0 +1,30 @@
+#root, .App, body, html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.blend {
+position: absolute;
+/*  position: 50 0 0 0; */
+ width:500px;
+ height:900px;
+ -webkit-mask-image: url('https://cdn.glitch.com/36f6b162-1d74-4754-8c4a-8326b3e8a9d1%2Fmodel_mask_final.png?v=1600660674399') ;
+mask-image: url('https://cdn.glitch.com/36f6b162-1d74-4754-8c4a-8326b3e8a9d1%2Fmodel_mask_final.png?v=1600660674399');
+-webkit-mask-repeat: no-repeat;
+ /* background-image: url("https://cdn.glitch.com/36f6b162-1d74-4754-8c4a-8326b3e8a9d1%2Fmodel_2.png?v=1600647689785"),
+   url("https://cdn.glitch.com/36f6b162-1d74-4754-8c4a-8326b3e8a9d1%2Fzebra_2.png?v=1600659910891"); */
+  background-blend-mode: multiply;
+  background-size:auto;
+  background-repeat: 20;
+  z-index:5
+
+}
+
+.collar{
+/*  display:absolute; */
+ position: absolute;
+ width:500px;
+ height:900px;
+ background-image: url("https://cdn.glitch.com/36f6b162-1d74-4754-8c4a-8326b3e8a9d1%2Fmodel_2.png?v=1600647689785")
+}
